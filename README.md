@@ -3,103 +3,99 @@
 
 Template for creating ds simple projects
 
+## Project Overview
+
+This repository provides a template for creating and organizing data science projects. It includes a basic project structure, essential dependencies, and guidance on setting up a virtual environment for development. The provided script (`housing_eda.py`) demonstrates a workflow for exploring a real estate dataset using various techniques. 
+
+## Project Goals
+
+This project aims to:
+
+- **Clean and prepare the real estate dataset for analysis.** This includes handling missing values, correcting data types, and identifying and addressing outliers.
+- **Explore the relationships between different features and the target variable (price).** This involves calculating correlations, performing statistical tests, and visualizing key findings.
+- **Identify areas with the highest price premium for waterfront properties.** This helps understand the impact of location and waterfront status on pricing.
+- **Analyze temporal patterns in property prices.** This reveals how prices fluctuate throughout the year based on seasonality and waterfront status.
+
+## Repository Structure
+
+The repository is structured as follows:
+
+- **`EDA.ipynb`:** The main Python script containing the data analysis code. This script includes:
+    - Data loading and initial data integrity checks.
+    - Missing value imputation using various techniques.
+    - Outlier detection and handling.
+    - Feature engineering to create relevant new columns.
+    - Statistical analysis to find correlations, perform ANOVA tests, and calculate effect sizes.
+    - Visualizations using Matplotlib and Seaborn to highlight key findings.
+    - A map visualization using Folium to display waterfront price premiums across different locations.
+- **`data/`:** Directory for storing the real estate dataset file (i.e., `housing.csv`).
+- **`GeoJSON/`:** Directory for storing the Seattle GeoJSON data used for the map visualization.
+- **`requirements.txt`:** A file containing the list of dependencies required for the project.
+- **`README.md`:** This file, providing an overview of the repository.
+
 ## Requirements
 
-- pyenv
-- python==3.11.3
+- **pyenv** for managing Python versions (optional but recommended)
+- **python==3.11.3** the specific Python version used in the project
+- **Node.js** required for using Plotly and Jupyter Lab
 
 ## Setup
 
-One of the first steps when starting any data science project is to create a virtual environment. For this project you have to create this environment from scratch yourself. However, you should be already familiar with the commands you will need to do so. The general workflow consists of... 
+**1. Set up Python Environment:**
 
-* setting the python version locally to 3.11.3
-* creating a virtual environment using the `venv` module
-* activating your newly created environment 
-* upgrading `pip` (This step is not absolutely necessary, but will save you trouble when installing some packages.)
-* installing the required packages via `pip`
+* **Install pyenv (Optional):** If you don't have pyenv, follow the instructions at [https://github.com/pyenv/pyenv](https://github.com/pyenv/pyenv).
+* **Install Python 3.11.3:**
+    ```bash
+    pyenv install 3.11.3
+    pyenv local 3.11.3
+    ```
+* **Create a virtual environment:**
+    ```bash
+    python -m venv .venv
+    ```
+* **Activate the virtual environment:**
+    ```bash
+    source .venv/bin/activate  # macOS/Linux
+    .venv\Scripts\Activate.ps1 # Windows PowerShell
+    .venv\Scripts\activate     # Windows Git-Bash
+    ```
+* **Upgrade pip:**
+    ```bash
+    pip install --upgrade pip
+    ```
+* **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-At the end, you want to make sure that people who are interested in your project can create an identical environment on their own computer in order to be able to run your code without running into errors. Therefore you can create a `requirements file` and add it to your repository. You can create such a file by running the following command: 
+**2. Install Node.js:**
 
-```bash
-pip freeze > requirements.txt
-```
-
-*Note: In rare case such a requirements file created with `pip freeze` might not ensure that another (especially M1 chip) user can install and execute it properly. This can happen if libraries need to be compiled (e.g. SciPy). Then it also depends on environment variables and the actual system libraries.*
-
-### Unit testing (Optional)
-
-If you write python scripts for your data processing methods, you can also write unit tests. In order to run the tests execute in terminal:
-
-```bash
-pytest
-```
-
-This command will execute all the functions in your project that start with the word **test**.
-
-## Set up your Environment
-This repo contains a requirements.txt file with a list of all the packages and dependencies you will need.
-
-Before you can start with plotly in Jupyter Lab you have to install node.js (if you haven't done it before).
-- Check **Node version**  by run the following commands:
+- **Check Node version:**
     ```sh
     node -v
     ```
-    If you haven't installed it yet, begin at `step_1`. Otherwise, proceed to `step_2`.
-
-
-### **`macOS`** type the following commands : 
-
-
-- `Step_1:` Update Homebrew and install Node by following commands:
+    If Node is not installed, follow the instructions below.
+- **Install Node.js using Homebrew (macOS):**
     ```sh
     brew update
     brew install node
     ```
-
-- `Step_2:` Install the virtual environment and the required packages by following commands:
-
-    ```BASH
-    pyenv local 3.11.3
-    python -m venv .venv
-    source .venv/bin/activate
-    pip install --upgrade pip
-    pip install -r requirements.txt
-    ```
-### **`WindowsOS`** type the following commands :
-
-
-- `Step_1:` Update Chocolatey and install Node by following commands:
+- **Install Node.js using Chocolatey (Windows):**
     ```sh
     choco upgrade chocolatey
     choco install nodejs
     ```
 
-- `Step_2:` Install the virtual environment and the required packages by following commands.
+## Running the Script
 
-   For `PowerShell` CLI :
-
-    ```PowerShell
-    pyenv local 3.11.3
-    python -m venv .venv
-    .venv\Scripts\Activate.ps1
-    pip install --upgrade pip
-    pip install -r requirements.txt
+1. Replace the placeholder `data/housing.csv` with your own real estate dataset. 
+2. Run the script from your terminal:
+    ```bash
+    python EDA.ipynb
     ```
 
-    For `Git-Bash` CLI :
-  
-    ```BASH
-    pyenv local 3.11.3
-    python -m venv .venv
-    source .venv/Scripts/activate
-    pip install --upgrade pip
-    pip install -r requirements.txt
-    ```
- 
+## Contributing
 
- **`Note:`**
-    If you encounter an error when trying to run `pip install --upgrade pip`, try using the following command:
-
-   ```Bash
-   python.exe -m pip install --upgrade pip
+Contributions are welcome! Feel free to open an issue or submit a pull request for bug fixes, feature enhancements, or improvements to the analysis workflow.
    ```
+
